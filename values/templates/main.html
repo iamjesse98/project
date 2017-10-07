@@ -55,10 +55,8 @@
 		<div class="chart">
 			<canvas id="myChart" width="200" height="300"></canvas>
 		</div>
-		<div id="data" class="data"></div>
+		<div id="data" class="data">Temperature: 0<br>Humidity: 0</div>
 	</div>
-
-	<div id="app"></div>
 	
 	<script>
 
@@ -67,15 +65,19 @@
 	let myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ["Temperature", "Humidity"],
+			labels: ["Temperature", "Humidity", "Moisture", "Water-level"],
 			datasets: [{
 				label: 'Sensor Reading',
-				data: [0, 0],
+				data: [0, 0, 0, 0],
 				backgroundColor: [
+					'rgba(0,150,136,0.6)',
+					'rgba(3,169,244,0.6)',
 					'rgba(0,150,136,0.6)',
 					'rgba(3,169,244,0.6)'
 				],
 				borderColor: [
+					'rgba(0,150,136,1)',
+					'rgba(3,169,244,1)',
 					'rgba(0,150,136,1)',
 					'rgba(3,169,244,1)'
 				],
@@ -99,11 +101,23 @@
 		let repeat = Bacon.fromPoll(500, () => fetch(`/values/`).then(res => res.json()))
 		repeat.onValue( data => data.then(res => {
 			if (res) {
-				myChart.data.datasets[0].data = [ res[res.length - 1].temperature, res[res.length - 1].humidity ]
+				myChart.data.datasets[0].data = [ res[res.length - 1].temperature, res[res.length - 1].humidity, res[res.length - 1].moisture, res[res.length - 1].distance ]
 				myChart.update()
-				document.querySelector('#data').innerHTML = `Temperature: ${res[res.length - 1].temperature}<br>Humidity: ${res[res.length - 1].humidity}`
+				document.querySelector('#data').innerHTML = `Temperature: ${res[res.length - 1].temperature}<br>Humidity: ${res[res.length - 1].humidity}<br>Moisture: ${res[res.length - 1].moisture}<br>Water Level: ${res[res.length - 1].distance}`
 			}
 		}))
+
+		Bacon.fromEvent(document.querySelector(`#data`), 'click')
+			 .onValue( _ => {
+				let msg = new SpeechSynthesisUtterance()
+				let voices = window.speechSynthesis.getVoices()
+				msg.voice = voices["Microsoft Zira Desktop - English (United States)"]
+				msg.rate = 1
+				msg.pitch = 1
+				msg.text = document.querySelector(`#data`).innerText.replace(/\:/g, ' is')
+				
+				speechSynthesis.speak(msg)
+			 })
 	</script>
 </body>
 </html>

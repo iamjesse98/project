@@ -1,0 +1,99 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.app-bar-menu {
+    color: #fff !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.myGreen {
+    background: rgba(111, 194, 72, 0.9) !important;
+    z-index: 10000 !important;
+}
+
+.app-bar {
+    position: fixed;
+}
+
+.body {
+    margin-top: -12px;
+}
+
+.parallax {
+    background: linear-gradient(to bottom, #0FD852, #012C01), url(../intro-bg.jpg) top center no-repeat;
+    background-blend-mode: screen, difference, lighten;
+    background-size: cover;
+    height: 105vh;
+    width: 100vw;
+    color: #fff;
+    background-attachment: fixed;
+     clip-path: polygon(0 3%, 100% 1%, 100% 89%, 48% 100%, 0 89%);
+}
+
+.img-container {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .6);
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(53% 0, 100% 50%, 100% 50%, 51% 100%, 0 53%);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.img-container:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, .6);
+    clip-path: polygon(47% 0, 100% 14%, 90% 100%, 15% 100%, 0 20%);
+}
+
+.img-container img {
+    transition: .3s;
+}
+
+.img-container:hover img {
+    transform: scale(1.1);
+}
+
+.img-container .info {
+    position: absolute;
+    top: 100%;
+    transition: .3s;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container:hover .info {
+    top: 0;
+}
+
+.sr-btns {
+    padding: 15px;
+}
+
+.footer {
+    color: #fff;
+    background: rgb(41, 41, 41);
+}

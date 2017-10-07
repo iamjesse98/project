@@ -1,0 +1,106 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Group - 18</title>
+	<script src="{% static "values/js/Chart.min.js" %}"></script>
+	<script src="{% static "values/js/Bacon.js" %}"></script>
+
+	<style>
+		* {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+		body {
+			background: #E0EAFC;
+			background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+			background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+		}
+		.chart {
+			transform: scaleY(.72) scaleX(.72);
+			margin-top: 15%;
+			display: flex;
+			align-items: center;
+			width: 84vw;
+			margin: auto;
+			height: 200px;
+		}
+		#myChart {
+		    margin-top: 15%;
+		}
+		@media(max-width: 650px) {
+			.chart {
+				width: 100vw;
+			}
+		}
+	</style>
+
+</head>
+<body>
+	<h3 style="text-align: center">GROUP - 18</h3>
+    <br><br><br><br><br><br><br><br>
+	<div>
+		<div class="chart">
+			<canvas id="myChart" width="200" height="150"></canvas>
+		</div>
+	</div>
+
+	<script>
+
+	// var jsonObject = JSON.parse("{{ data | safe }}")
+	let ctx = document.getElementById("myChart");
+	let myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [0, .5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24],
+    datasets: [{
+        data: [],
+        label: "Temperature",
+        borderColor: "#3e95cd",
+        fill: false
+      }, {
+        data: [],
+        label: "Humidity",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, {
+				data: [],
+				label: "Moisture",
+				borderColor: "#8e5ea2",
+				fill: false
+			}, {
+					data: [],
+					label: "Water-level",
+					borderColor: "#8e5ea2",
+					fill: false
+				}
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Humidity, Temperature, Moisture, Water-level'
+    }
+  }
+});
+
+    // update for every half an hour
+		 let repeat = Bacon.fromPoll( 900, () => fetch(`/values/`).then(res => res.json()))
+		 repeat.onValue( data => data.then(res => {
+		 	if (res) {
+		 	    //if (!(res[res.length - 1].time.split(':')[0] === new Date().getHours().toString())) {
+                    myChart.data.datasets[0].data.push(res[res.length - 1].temperature)
+                    myChart.data.datasets[1].data.push(res[res.length - 1].humidity)
+                    myChart.data.datasets[2].data.push(res[res.length - 1].moisture)
+										myChart.data.datasets[3].data.push(res[res.length - 1].distance)										
+                    myChart.update()
+                    //console.log(res[0].time.split(':')[0])
+		 		//}
+		 	}
+		}))
+
+	</script>
+</body>
+</html>

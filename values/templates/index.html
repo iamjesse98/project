@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static "values/css/metro.css" %}" rel="stylesheet">
+    <link href="{% static "values/css/metro-icons.css" %}" rel="stylesheet">
+    <link href="{% static "values/css/metro-colors.css" %}" rel="stylesheet">
+    <link href="{% static "values/css/metro-responsive.css" %}" rel="stylesheet">
+    <link href="{% static "values/css/metro-schemes.css" %}" rel="stylesheet">
+
+    <link href="{% static "values/css/main.css" %}" rel="stylesheet">
+
+    <script src="{% static "values/js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "values/js/metro.js" %}"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app-bar green myGreen">
+        <a class="app-bar-element" href="...">Group-18</a>
+        <span class="app-bar-divider"></span>
+        <ul class="horizontal-menu app-bar-menu">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="" class="dropdown-toggle">Visualization</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li>
+                        <a href="">Present</a>
+                    </li>
+                    <li>
+                        <a href="">Today</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/values/">API</a>
+            </li>
+            <li>
+                <a href="">Help</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <div class="parallax">
+            <div class="center">
+                <h1>Web GIS</h1>
+                <p style="color: #000;">Group-18 Project.</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grid sr-btns">
+        <div class="row">
+            <div class="cell size6">
+                <button onclick="window.location.href = '/login'" class="button loading-pulse lighten primary">Sign In</button>
+            </div>
+            <div class="cell size6">
+                <button onclick="window.location.href = '/register'" class="button info block-shadow-info text-shadow">Create An Account.</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grid">
+        <div class="row">
+            <h3>Our 🏡</h3>
+        </div>
+        <div class="row">
+            <div class="cell size12">
+                <div id="googleMap" style="width:100%;height:400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grid">
+        <div class="row">
+            <h2>Made with 🧀 and 💖 by: </h2>
+        </div>
+        <div class="row">
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell size2">
+                <div class="img-container">
+                    <img src="{% static "values/profile.png" %}" alt="jesse">
+                    <div class="info">
+                        <p>name
+                            <br>name.n16@iiits.in</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-grid footer">
+        <div class="row"></div>
+        <div class="row">
+            <footer>&copy; 2017. All Rights Reserved.</footer>
+        </div>
+    </div>
+
+    <script>
+        function initMap() {
+            let myLatLng = { lat: 13.5482, lng: 80.0002 }
+
+            let map = new google.maps.Map(document.getElementById('googleMap'), {
+                zoom: 16,
+                center: myLatLng
+            })
+
+            let marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Our Location'
+            })
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASZsihSydnvgO82MaFKaczekH65_nuruQ&callback=initMap"></script>
+</body>
+
+</html>

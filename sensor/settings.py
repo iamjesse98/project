@@ -25,7 +25,7 @@ SECRET_KEY = '54ylquub#msuyq!_191g1ofsxlx4)!$$(kycdd!fdxofi@er0^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -123,3 +123,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+LOGIN_REDIRECT_URL = '/values/gui/'

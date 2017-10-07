@@ -1,0 +1,28 @@
+.my-tile {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+}
+
+.my-tile span {
+    font-size: 140px !important;
+}
+
+.my-tile p {
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+@media(max-width: 640px) {
+    .tile-container {
+        margin-top: 100px;
+    }
+    .tile-area .tile-area-title {
+        display: block;
+        margin-left: -71px;
+    }
+    body {
+        overflow: scroll;
+    }
+}
